@@ -1,13 +1,19 @@
 package com.oo2oo.linkage;
 
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.oo2oo.linkage.adapter.GoodsTypeAdapter;
 import com.oo2oo.linkage.adapter.BaseAdapter;
+import com.oo2oo.linkage.adapter.RecyclerAdapter;
 import com.oo2oo.linkage.adapter.UnitTypeAdapter;
 import com.oo2oo.linkage.bean.GoodsType;
 import com.oo2oo.linkage.bean.TestData;
@@ -30,13 +36,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_one_pop = (TextView) findViewById(R.id.tv_one_pop);
         findViewById(R.id.tv_three_pop).setOnClickListener(this);
         findViewById(R.id.tv_one_pop).setOnClickListener(this);
+        findViewById(R.id.tv_recycleview).setOnClickListener(this);
 
 
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.tv_three_pop) {
+        if (view.getId() == R.id.tv_recycleview) {
+            View contentView = View.inflate(this, R.layout.popup_recycle, null);
+            contentView.setBackground(BgUtil.getBackgroundDrawable(Color.parseColor("#dddddd"),5,10f));
+            RecyclerView recyclerView = contentView.findViewById(R.id.rv_list);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            List<UnitType> units = TestData.getList(this, R.raw.goods_type, UnitType.class);
+            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, units);
+            recyclerView.setAdapter(recyclerAdapter);
+            PopupWindow popupWindow = new PopupWindow(contentView, 400, 300);
+            popupWindow.setBackgroundDrawable(new BitmapDrawable());
+            popupWindow.showAsDropDown(view,  view.getWidth()/2+20,0);
+        } else if (view.getId() == R.id.tv_three_pop) {
 
             final List<GoodsType> goodsType = TestData.getList(this, R.raw.goods_classifiy, GoodsType.class);
 

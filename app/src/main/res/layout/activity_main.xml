@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EEEEEE"
     android:orientation="vertical"
     tools:context="com.oo2oo.linkage.MainActivity">
 
@@ -18,20 +19,32 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="#EEEEEE" />
+        android:layout_height="0.5dp" />
 
     <TextView
         android:id="@+id/tv_one_pop"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="#ffffff"
         android:gravity="center|left"
         android:paddingLeft="15dp"
         android:text="一个列表" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#EEEEEE" />
+        android:layout_height="10dp" />
+
+    <TextView
+        android:id="@+id/tv_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:gravity="center|left"
+        android:paddingLeft="15dp"
+        android:text="弹出包含recyclerview的popwindow" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 
 </LinearLayout>
